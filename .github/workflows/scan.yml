@@ -1,4 +1,4 @@
-name: Deployment of DevOps project
+name: SonarScan
 
 on:
   workflow_dispatch:
@@ -19,12 +19,12 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v3
         env:
-          GITHUBTOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-            -Dsonar.projectKey=${{secrets.PROJECT_KEY}}
+            -Dsonar.projectKey="${{secrets.PROJECT_KEY}}"
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }}
-            -Dsonar.host.url=${{secrets.URL}}
+           
  
